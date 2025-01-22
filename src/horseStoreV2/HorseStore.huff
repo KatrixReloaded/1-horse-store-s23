@@ -107,12 +107,12 @@
     [HORSE_FED_TIMESTAMP_LOCATION]      // [HORSE_FED_TIMESTAMP_LOCATION, horseId]
     LOAD_ELEMENT_FROM_KEYS(0x00)        // [horseFedTimestamp]
     timestamp                           // [timestamp, horseFedTimestamp]
-    dup2 dup2                           // [timestamp, horseFedTimestamp, timestamp, horseFedTimestamp]
-    sub                                 // [timestamp - horseFedTimestamp, timestamp, horseFedTimestamp]
-    [HORSE_HAPPY_IF_FED_WITHIN_CONST]   // [HORSE_HAPPY_IF_FED_WITHIN, timestamp - horseFedTimestamp, timestamp, horseFedTimestamp]
-    gt                                  // [HORSE_HAPPY_IF_FED_WITHIN > timestamp - horseFedTimestamp, timestamp, horseFedTimestamp]
-    start_return_true jumpi             // [timestamp, horseFedTimestamp]
-    eq                                  // [timestamp == horseFedTimestamp]
+    [HORSE_IF_FED_WITHIN_CONST]         // [HORSE_IF_FED_WITHIN_CONST, timestamp - horseFedTimestamp]
+    dup2 dup2                           // [HORSE_IF_FED_WITHIN_CONST, timestamp - horseFedTimestamp, HORSE_IF_FED_WITHIN_CONST, timestamp - horseFedTimestamp]
+    gt                                  // [HORSE_IF_FED_WITHIN_CONST > timestamp - horseFedTimestamp, HORSE_IF_FED_WITHIN_CONST, timestamp - horseFedTimestamp]
+    start_return_true jumpi             // [HORSE_IF_FED_WITHIN_CONST, timestamp - horseFedTimestamp]
+    eq                                  // [HORSE_IF_FED_WITHIN_CONST == timestamp - horseFedTimestamp]
+    start_return_true jumpi             // []
     start_return 
     jump
     
